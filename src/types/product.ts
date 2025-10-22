@@ -4,5 +4,7 @@ export interface Product {
     description?: string
     price: number
     stock: number
-    category: number
+    categoryId: number
 }
+
+export type NewProduct = Omit<Product, "id">
