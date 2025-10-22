@@ -1,4 +1,5 @@
 import { pool } from "../db/index.js";
+import { NotFountError } from "../errors/NotFoundError.js";
 import { NewProduct } from "../types/product.js";
 
 const camelCaseFormat = `id, title, description, price, stock, category_id AS categoryId, created_at AS createdAt, updated_at AS updatedAs`;
@@ -20,4 +21,12 @@ export const createProduct = async (product: NewProduct) => {
 export const getProducts = async () => {
     const result = await pool.query(`SELECT ${camelCaseFormat} FROM products`)
     return result.rows
+}
+
+export const getProductById = async (id: number) => {
+    const result = await pool.query(`SELECT ${camelCaseFormat} FROM products WHERE id = $1`, [id])
+    if (result.rowCount === 0) {
+        throw new NotFountError(`No existe el producto con el id ${id}`)
+    }
+    return result.rows[0]
 }
