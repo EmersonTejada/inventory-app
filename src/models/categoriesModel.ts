@@ -3,7 +3,7 @@ import { DuplicatedError } from "../errors/DuplicatedError.js";
 import { NotFountError } from "../errors/NotFoundError.js";
 import { Category, NewCategory } from "../types/category.js";
 
-const camelCaseFormat = `id, name, description, created_at AS createdAt, updated_at AS updatedAt`;
+const camelCaseFormat = `id, name, description, created_at AS "createdAt", updated_at AS "updatedAt"`;
 
 export const createCategory = async (category: NewCategory) => {
   try {
