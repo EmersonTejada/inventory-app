@@ -24,3 +24,9 @@ export const updateProduct: RequestHandler = async (req, res) => {
     const updatedProduct = await productsModel.updateProduct(id, product)
     res.json({message: "Producto actualizado exitosamente", product: updatedProduct})
 }
+
+export const deleteProduct: RequestHandler = async (req, res) => {
+    const id = Number(req.params.id)
+    const deletedProduct = await productsModel.deleteProduct(id)
+    res.json({message: "Producto elimanado exitosamente", product: deletedProduct})
+}
