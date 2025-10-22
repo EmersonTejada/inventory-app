@@ -40,3 +40,8 @@ export const deleteProduct = async (id: number) => {
     const result = await pool.query(`DELETE FROM products WHERE id = $1 RETURNING ${camelCaseFormat}`, [id])
     return result.rows[0]
 }
+
+export const searchProduct = async (searchQuery: string) => {
+    const result = await pool.query(`SELECT ${camelCaseFormat} FROM products WHERE title ILIKE $1`, [`%${searchQuery}%`])
+    return result.rows
+}

@@ -30,3 +30,9 @@ export const deleteProduct: RequestHandler = async (req, res) => {
     const deletedProduct = await productsModel.deleteProduct(id)
     res.json({message: "Producto elimanado exitosamente", product: deletedProduct})
 }
+
+export const searchProducts: RequestHandler<{}, {}, {}, {searchQuery: string}> = async (req, res) => {
+    const {searchQuery} = req.query
+    const searchResult = await productsModel.searchProduct(searchQuery)
+    res.json({message: "Busqueda exitosa", products: searchResult})
+}
