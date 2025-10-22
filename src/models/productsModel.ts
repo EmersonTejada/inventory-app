@@ -30,3 +30,8 @@ export const getProductById = async (id: number) => {
     }
     return result.rows[0]
 }
+
+export const updateProduct =  async (id: number, product: Partial<NewProduct>) => {
+    const result = await pool.query(`UPDATE products SET title = $1, description = $2, price = $3, stock = $4, category_id = $5 WHERE id = $6 RETURNING ${camelCaseFormat}`, [product.title, product.description, product.price, product.stock, product.categoryId, id])
+    return result.rows[0]
+}
