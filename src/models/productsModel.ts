@@ -1,5 +1,5 @@
 import { pool } from "../db/index.js";
-import { NewProduct, Product } from "../types/product.js";
+import { NewProduct } from "../types/product.js";
 
 const camelCaseFormat = `id, title, description, price, stock, category_id AS categoryId, created_at AS createdAt, updated_at AS updatedAs`;
 export const createProduct = async (product: NewProduct) => {
