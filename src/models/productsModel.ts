@@ -16,3 +16,8 @@ export const createProduct = async (product: NewProduct) => {
 
   return result.rows[0];
 };
+
+export const getProducts = async () => {
+    const result = await pool.query(`SELECT ${camelCaseFormat} FROM products`)
+    return result.rows
+}
