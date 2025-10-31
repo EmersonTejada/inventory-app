@@ -1,6 +1,6 @@
 import { pool } from "../db/index.js";
 import { DuplicatedError } from "../errors/DuplicatedError.js";
-import { NotFountError } from "../errors/NotFoundError.js";
+import { NotFoundError } from "../errors/NotFoundError.js";
 import { Category, NewCategory } from "../types/category.js";
 
 const camelCaseFormat = `id, name, description, created_at AS "createdAt", updated_at AS "updatedAt"`;
@@ -30,7 +30,7 @@ export const updateCategory = async (id: number, category: Category) => {
     [category.name, category.description, id]
   );
   if (result.rowCount === 0) {
-    throw new NotFountError(`No existe la categoria con el id ${id}`);
+    throw new NotFoundError(`No existe la categoria con el id ${id}`);
   }
   return result.rows[0];
 };
@@ -41,7 +41,7 @@ export const deleteCategory = async (id: number) => {
     [id]
   );
   if (result.rowCount === 0) {
-    throw new NotFountError(`No existe la categoria con el id ${id}`);
+    throw new NotFoundError(`No existe la categoria con el id ${id}`);
   }
   return result.rows[0];
 };
@@ -52,7 +52,7 @@ export const getCategoryById = async (id: number) => {
     [id]
   );
   if (result.rowCount === 0) {
-    throw new NotFountError(`No existe la categoria con el id ${id}`);
+    throw new NotFoundError(`No existe la categoria con el id ${id}`);
   }
   return result.rows[0];
 };

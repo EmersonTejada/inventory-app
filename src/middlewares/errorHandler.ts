@@ -14,11 +14,15 @@ export const errorHandler = (
 ) => {
   console.error(err);
   if (err.name === "NotFoundError" ) {
-    res.status(400).json({ message: err.message });
+    res.status(404).json({ message: err.message });
   }
 
   if (err.name === "DuplicatedError") {
     res.status(400).json({message: err.message})
+  }
+
+  if(err.name === "UnauthorizedError") {
+    res.status(401).json({message: err.message})
   }
 
   res.status(500).json({ message: "Error interno del servidor" });
